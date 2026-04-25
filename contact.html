@@ -120,7 +120,7 @@
     /* ── CONTACT BODY ── */
     .contact-body {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr;
       gap: 0;
       margin-top: 80px;
       border-top: 1px solid #eee;
@@ -129,10 +129,10 @@
     /* ── DIRECT CHANNELS ── */
     .channels {
       padding: 72px 60px;
-      border-right: 1px solid #eee;
       display: flex;
       flex-direction: column;
       gap: 0;
+      max-width: 700px;
     }
     .section-label {
       font-size: 12px;
@@ -193,105 +193,6 @@
     }
     .channel-item:hover .channel-arrow { transform: translateX(4px); }
 
-    /* ── MESSAGE FORM ── */
-    .message-side {
-      padding: 72px 60px;
-      background: var(--light);
-    }
-
-    .message-side h2 {
-      font-family: var(--font-display);
-      font-size: clamp(24px, 3vw, 36px);
-      font-weight: 400;
-      margin-bottom: 8px;
-    }
-    .message-side p {
-      font-size: 14px;
-      color: var(--grey);
-      margin-bottom: 32px;
-      line-height: 1.6;
-    }
-
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-    }
-
-    .field {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-    .field label {
-      font-size: 12px;
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--grey);
-    }
-    .field input,
-    .field textarea,
-    .field select {
-      font-family: var(--font-body);
-      font-size: 15px;
-      color: var(--black);
-      background: var(--white);
-      border: 1.5px solid #ddd;
-      border-radius: 10px;
-      padding: 14px 16px;
-      outline: none;
-      transition: border-color 0.2s;
-      width: 100%;
-    }
-    .field input:focus,
-    .field textarea:focus,
-    .field select:focus {
-      border-color: var(--black);
-    }
-    .field textarea { resize: vertical; min-height: 120px; }
-
-    .submit-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      background: var(--black);
-      color: var(--white);
-      font-family: var(--font-body);
-      font-size: 15px;
-      font-weight: 500;
-      padding: 16px 32px;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: opacity 0.2s, transform 0.2s;
-      width: 100%;
-      margin-top: 4px;
-    }
-    .submit-btn:hover { opacity: 0.85; transform: translateY(-2px); }
-    .submit-btn:active { transform: translateY(0); }
-
-    /* success state */
-    .form-success {
-      display: none;
-      text-align: center;
-      padding: 48px 24px;
-    }
-    .form-success .icon { font-size: 48px; margin-bottom: 16px; }
-    .form-success h3 {
-      font-family: var(--font-display);
-      font-size: 28px;
-      margin-bottom: 10px;
-    }
-    .form-success p { font-size: 15px; color: var(--grey); }
-
     /* ── AVAILABILITY BANNER ── */
     .availability {
       display: flex;
@@ -330,9 +231,7 @@
       nav { padding: 20px 24px; }
       .contact-hero { padding: 48px 24px 0; }
       .contact-body { grid-template-columns: 1fr; }
-      .channels { padding: 48px 24px; border-right: none; border-bottom: 1px solid #eee; }
-      .message-side { padding: 48px 24px; }
-      .form-row { grid-template-columns: 1fr; }
+      .channels { padding: 48px 24px; }
       .availability { padding: 20px 24px; }
       .nav-links { gap: 20px; }
     }
@@ -406,6 +305,8 @@
       </a>
     </div>
 
+  </div>
+
   <!-- AVAILABILITY BANNER -->
   <div class="availability reveal">
     <div class="dot"></div>
@@ -415,20 +316,6 @@
   <footer>&copy; 2025 Aisha Braimoh · Product Designer</footer>
 
   <script>
-    function handleSubmit() {
-      const fname = document.getElementById('fname').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const message = document.getElementById('message').value.trim();
-
-      if (!fname || !email || !message) {
-        alert('Please fill in your name, email, and message before sending.');
-        return;
-      }
-
-      document.getElementById('form-wrap').style.display = 'none';
-      document.getElementById('form-success').style.display = 'block';
-    }
-
     // ── SCROLL REVEAL ──
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
