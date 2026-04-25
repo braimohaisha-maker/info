@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aisha Braimoh – Product Designer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --white: #ffffff;
+      --black: #1a1a1a;
+      --yellow: #fffba3;
+      --blue: #ABD2FA;
+      --green: #C2F8CB;
+      --grey: #6b6b6b;
+      --font-display: 'DM Serif Display', serif;
+      --font-body: 'DM Sans', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--white);
+      color: var(--black);
+      font-family: var(--font-body);
+      font-weight: 400;
+      line-height: 1.6;
+      animation: pageFadeIn 0.5s ease both;
+    }
+
+    /* ── PAGE TRANSITIONS ── */
+    @keyframes pageFadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    .fade-out {
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s ease-out;
+    }
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── NAV ── */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 28px 60px;
+      position: sticky;
+      top: 0;
+      background: var(--white);
+      z-index: 100;
+    }
+
+    .nav-logo {
+      font-family: var(--font-body);
+      font-weight: 500;
+      font-size: 15px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--black);
+      text-decoration: none;
+      line-height: 1.2;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 40px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--grey);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--black);
+    }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 80px 60px 100px;
+      display: grid;
+      grid-template-columns: 1fr;
+      align-items: center;
+      gap: 60px;
+      max-width: 1200px;
+    }
+
+    .hero-text {}
+
+    .hero-photo {
+      position: relative;
+      border-radius: 260px 260px 260px 260px;
+      overflow: hidden;
+      aspect-ratio: 3/4;
+      max-height: 540px;
+      background: var(--yellow);
+      flex-shrink: 0;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.12);
+    }
+
+    .hero-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+    }
+
+    .hero-pre {
+      font-family: var(--font-body);
+      font-size: 22px;
+      font-weight: 300;
+      color: var(--black);
+      margin-bottom: 0;
+      line-height: 1.1;
+    }
+
+    .hero-name {
+      display: inline-block;
+      font-family: var(--font-display);
+      font-size: clamp(56px, 8vw, 88px);
+      font-weight: 400;
+      line-height: 1.05;
+      background: var(--yellow);
+      padding: 0 6px;
+      margin-bottom: 12px;
+    }
+
+    .hero-tagline {
+      font-family: var(--font-body);
+      font-size: clamp(30px, 5vw, 52px);
+      font-weight: 300;
+      line-height: 1.15;
+      color: var(--black);
+      margin-bottom: 32px;
+    }
+
+    .hero-tagline strong {
+      font-weight: 500;
+    }
+
+    .hero-tagline .outline {
+      font-weight: 300;
+      -webkit-text-stroke: 1.5px var(--black);
+      color: transparent;
+    }
+
+    .hero-desc {
+      font-size: 16px;
+      color: var(--grey);
+      max-width: 520px;
+      line-height: 1.7;
+    }
+
+    /* ── WORK SECTION ── */
+    .work {
+      padding: 60px 60px 120px;
+    }
+
+    .work-label {
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--grey);
+      margin-bottom: 40px;
+    }
+
+    .work-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .card {
+      display: flex;
+      align-items: center;
+      border-radius: 16px;
+      overflow: hidden;
+      min-height: 220px;
+      text-decoration: none;
+      color: var(--black);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.10);
+    }
+
+    .card--yellow { background: var(--yellow); }
+    .card--blue   { background: var(--blue); }
+    .card--green  { background: var(--green); }
+
+    .card-visual {
+      flex: 0 0 42%;
+      padding: 32px 0 32px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .card-visual img {
+      width: 100%;
+      max-width: 320px;
+      object-fit: contain;
+      border-radius: 8px;
+      box-shadow: 0 12px 36px rgba(0,0,0,0.14);
+    }
+
+    .card-info {
+      flex: 1;
+      padding: 40px 48px 40px 32px;
+    }
+
+    .card-title {
+      font-family: var(--font-display);
+      font-size: clamp(20px, 2.5vw, 28px);
+      font-weight: 400;
+      margin-bottom: 10px;
+      line-height: 1.2;
+    }
+
+    .card-desc {
+      font-size: 15px;
+      color: var(--grey);
+      line-height: 1.6;
+    }
+
+    /* ── CASE STUDY BUTTON ── */
+    .case-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 18px;
+      background: var(--black);
+      color: var(--white);
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 12px 22px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .case-btn:hover {
+      opacity: 0.82;
+      transform: translateY(-2px);
+    }
+    .case-btn:active { transform: translateY(0); }
+
+    /* ── CONNECT ── */
+    .connect {
+      text-align: center;
+      padding: 80px 60px 100px;
+      border-top: 1px solid #eee;
+    }
+
+    .connect h2 {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 400;
+      margin-bottom: 12px;
+    }
+
+    .connect p {
+      font-size: 16px;
+      color: var(--grey);
+      margin-bottom: 36px;
+    }
+
+    .connect-icons {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+    }
+
+    .connect-icons a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 52px;
+      height: 52px;
+      background: var(--black);
+      border-radius: 8px;
+      color: var(--white);
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+
+    .connect-icons a:hover { opacity: 0.75; }
+
+    .connect-icons svg {
+      width: 22px;
+      height: 22px;
+      fill: var(--white);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 12px;
+      color: #bbb;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-pre    { animation: fadeUp 0.6s ease both; }
+    .hero-name   { animation: fadeUp 0.6s 0.1s ease both; }
+    .hero-tagline{ animation: fadeUp 0.6s 0.2s ease both; }
+    .hero-desc   { animation: fadeUp 0.6s 0.3s ease both; }
+
+    @media (max-width: 768px) {
+      nav { padding: 20px 24px; }
+      .hero { padding: 48px 24px 60px; grid-template-columns: 1fr; gap: 36px; }
+      .hero-photo { max-height: 380px; border-radius: 180px 180px 180px 180px; order: -1; }
+      .work { padding: 40px 24px 80px; }
+      .connect { padding: 60px 24px 80px; }
+
+      .card { flex-direction: column; min-height: auto; }
+      .card-visual { flex: none; width: 100%; padding: 28px 28px 0; }
+      .card-info { padding: 24px 28px 32px; }
+
+      .nav-links { gap: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-logo">Aisha<br>Braimoh</a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">HOME</a></li>
+      <li><a href="portfolio.html">WORK</a></li>
+      <li><a href="about.html">ABOUT</a></li>
+      <li><a href="contact.html">CONTACT</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-text">
+      <p class="hero-pre">Hi, I'm</p>
+      <div>
+        <span class="hero-name">Aisha Braimoh</span>
+      </div>
+      <p class="hero-tagline">
+        I <span class="outline">design</span>, <strong>simplify</strong>,<br>
+        <span class="outline">research</span> &amp; <strong>deliver.</strong>
+      </p>
+      <p class="hero-desc">
+        Designing accessible, data-informed digital experiences that simplify complexity especially in financial services.
+      </p>
+  </section>
+
+  <!-- WORK PREVIEW -->
+  <section class="work">
+    <p class="work-label">My Recent Work</p>
+    <div class="work-cards">
+
+      <!-- Card 1 -->
+      <a href="portfolio.html" class="card card--blue reveal">
+        <div class="card-visual">
+          <img src="casestudy-1.jpg" alt="Laptop Mockup" />
+        </div>
+        <div class="card-info">
+          <h2 class="card-title">Digital First &amp; Mobile Personalisation of Servicing Pages</h2>
+          <p class="card-desc">Led a mobile-first and digitisation redesign of servicing pages to improve customer experience and retention across key help and support journeys.</p>
+        </div>
+      </a>
+
+      <!-- Card 2 — Bumblebees -->
+      <div class="card card--yellow reveal" style="text-decoration:none; color:var(--black);">
+        <div class="card-visual">
+          <img src="casestudy-2.jpg" alt="Mobile Mockup" />
+        </div>
+        <div class="card-info">
+          <h2 class="card-title">Bumblebees — Social Networking App for Mothers</h2>
+          <p class="card-desc">Bumblebees is a mobile social networking app designed to connect mothers, reduce isolation, and provide accessible postnatal support.</p>
+          <a href="https://medium.com/@braimohaisha/case-study-02-bumblebees-43bccf75f254" target="_blank" class="case-btn">View Full Project ↗</a>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <a href="portfolio.html" class="card card--green reveal">
+        <div class="card-visual">
+          <img src="casestudy-3.jpg" alt="Laptop Mockup" />
+        </div>
+        <div class="card-info">
+          <h2 class="card-title">MBNA Pay by Debit Card — Mobile App Journey Redesign</h2>
+          <p class="card-desc">An end-to-end UX audit and redesign of the MBNA mobile app journey for paying a credit card using a debit card.</p>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- CONNECT -->
+  <section class="connect reveal">
+    <h2>Let's connect</h2>
+    <p>Get in touch for opportunities or just to say hi! 👋</p>
+    <div class="connect-icons">
+      <!-- LinkedIn -->
+      <a href="https://www.linkedin.com/in/aishabraimoh" target="_blank" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+        </svg>
+      </a>
+      <!-- Email -->
+      <a href="mailto:braimohaisha@gmail.com" aria-label="Email">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+        </svg>
+      </a>
+      <!-- Phone -->
+      <a href="tel:+447565490077" aria-label="Phone">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+        </svg>
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 Aisha Braimoh · Product Designer
+  </footer>
+
+  <script>
+    // ── SCROLL REVEAL ──
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    // ── PAGE TRANSITIONS ──
+    document.querySelectorAll('a[href]').forEach(link => {
+      const href = link.getAttribute('href');
+      if (
+        link.target === '_blank' ||
+        href.startsWith('mailto:') ||
+        href.startsWith('tel:') ||
+        href.startsWith('#') ||
+        href.startsWith('http')
+      ) return;
+
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        document.body.classList.add('fade-out');
+        setTimeout(() => { window.location.href = href; }, 300);
+      });
+    });
+  </script>
+
+</body>
+</html>

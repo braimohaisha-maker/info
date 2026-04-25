@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact – Aisha Braimoh</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --white: #ffffff;
+      --black: #1a1a1a;
+      --yellow: #fffba3;
+      --blue: #ABD2FA;
+      --green: #C2F8CB;
+      --grey: #6b6b6b;
+      --light: #f7f7f7;
+      --font-display: 'DM Serif Display', serif;
+      --font-body: 'DM Sans', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--white);
+      color: var(--black);
+      font-family: var(--font-body);
+      font-weight: 400;
+      line-height: 1.6;
+      animation: pageFadeIn 0.5s ease both;
+    }
+
+    /* ── PAGE TRANSITIONS ── */
+    @keyframes pageFadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    .fade-out {
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s ease-out;
+    }
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── NAV ── */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 28px 60px;
+      position: sticky;
+      top: 0;
+      background: var(--white);
+      z-index: 100;
+    }
+    .nav-logo {
+      font-family: var(--font-body);
+      font-weight: 500;
+      font-size: 15px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--black);
+      text-decoration: none;
+      line-height: 1.2;
+    }
+    .nav-links { display: flex; gap: 40px; list-style: none; }
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--grey);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover,
+    .nav-links a.active { color: var(--black); }
+
+    /* ── HERO ── */
+    .contact-hero {
+      padding: 80px 60px 0;
+      max-width: 800px;
+      animation: fadeUp 0.6s ease both;
+    }
+    .contact-hero p.label {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--grey);
+      margin-bottom: 16px;
+    }
+    .contact-hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(40px, 6vw, 76px);
+      font-weight: 400;
+      line-height: 1.05;
+      margin-bottom: 20px;
+    }
+    .contact-hero h1 .highlight { background: var(--yellow); padding: 0 6px; }
+    .contact-hero p.sub {
+      font-size: 17px;
+      color: var(--grey);
+      line-height: 1.7;
+      max-width: 500px;
+    }
+
+    /* ── CONTACT BODY ── */
+    .contact-body {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      margin-top: 80px;
+      border-top: 1px solid #eee;
+    }
+
+    /* ── DIRECT CHANNELS ── */
+    .channels {
+      padding: 72px 60px;
+      border-right: 1px solid #eee;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .section-label {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--grey);
+      margin-bottom: 32px;
+    }
+
+    .channel-item {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 24px 0;
+      border-bottom: 1px solid #eee;
+      text-decoration: none;
+      color: var(--black);
+      transition: background 0.2s;
+    }
+    .channel-item:first-of-type { border-top: 1px solid #eee; }
+    .channel-item:hover .channel-icon { transform: scale(1.05); }
+
+    .channel-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: transform 0.2s ease;
+    }
+    .channel-icon svg { width: 22px; height: 22px; }
+    .channel-icon--yellow { background: var(--yellow); }
+    .channel-icon--blue   { background: var(--blue); }
+    .channel-icon--green  { background: var(--green); }
+
+    .channel-info {}
+    .channel-type {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--grey);
+      margin-bottom: 3px;
+    }
+    .channel-value {
+      font-size: 16px;
+      font-weight: 400;
+      color: var(--black);
+    }
+    .channel-arrow {
+      margin-left: auto;
+      font-size: 20px;
+      color: var(--grey);
+      transition: transform 0.2s;
+    }
+    .channel-item:hover .channel-arrow { transform: translateX(4px); }
+
+    /* ── MESSAGE FORM ── */
+    .message-side {
+      padding: 72px 60px;
+      background: var(--light);
+    }
+
+    .message-side h2 {
+      font-family: var(--font-display);
+      font-size: clamp(24px, 3vw, 36px);
+      font-weight: 400;
+      margin-bottom: 8px;
+    }
+    .message-side p {
+      font-size: 14px;
+      color: var(--grey);
+      margin-bottom: 32px;
+      line-height: 1.6;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .field label {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--grey);
+    }
+    .field input,
+    .field textarea,
+    .field select {
+      font-family: var(--font-body);
+      font-size: 15px;
+      color: var(--black);
+      background: var(--white);
+      border: 1.5px solid #ddd;
+      border-radius: 10px;
+      padding: 14px 16px;
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+    }
+    .field input:focus,
+    .field textarea:focus,
+    .field select:focus {
+      border-color: var(--black);
+    }
+    .field textarea { resize: vertical; min-height: 120px; }
+
+    .submit-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: var(--black);
+      color: var(--white);
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 500;
+      padding: 16px 32px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.2s;
+      width: 100%;
+      margin-top: 4px;
+    }
+    .submit-btn:hover { opacity: 0.85; transform: translateY(-2px); }
+    .submit-btn:active { transform: translateY(0); }
+
+    /* success state */
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 48px 24px;
+    }
+    .form-success .icon { font-size: 48px; margin-bottom: 16px; }
+    .form-success h3 {
+      font-family: var(--font-display);
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+    .form-success p { font-size: 15px; color: var(--grey); }
+
+    /* ── AVAILABILITY BANNER ── */
+    .availability {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 24px 60px;
+      background: var(--green);
+      border-top: 1px solid #eee;
+    }
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #2ecc71;
+      flex-shrink: 0;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(46,204,113,0.5); }
+      50% { box-shadow: 0 0 0 6px rgba(46,204,113,0); }
+    }
+    .availability p {
+      font-size: 15px;
+      color: var(--black);
+    }
+    .availability p strong { font-weight: 500; }
+
+    footer { text-align: center; padding: 32px 20px; font-size: 12px; color: #bbb; border-top: 1px solid #eee; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 900px) {
+      nav { padding: 20px 24px; }
+      .contact-hero { padding: 48px 24px 0; }
+      .contact-body { grid-template-columns: 1fr; }
+      .channels { padding: 48px 24px; border-right: none; border-bottom: 1px solid #eee; }
+      .message-side { padding: 48px 24px; }
+      .form-row { grid-template-columns: 1fr; }
+      .availability { padding: 20px 24px; }
+      .nav-links { gap: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-logo">Aisha<br>Braimoh</a>
+    <ul class="nav-links">
+      <li><a href="index.html">HOME</a></li>
+      <li><a href="portfolio.html">WORK</a></li>
+      <li><a href="about.html">ABOUT</a></li>
+      <li><a href="contact.html" class="active">CONTACT</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <header class="contact-hero">
+    <p class="label">Get In Touch</p>
+    <h1>Let's <span class="highlight">connect.</span></h1>
+    <p class="sub">Get in touch for opportunities, collaborations, or just to say hi. I'm always happy to have a conversation. 👋</p>
+  </header>
+
+  <!-- CONTACT BODY -->
+  <div class="contact-body">
+
+    <!-- CHANNELS -->
+    <div class="channels reveal">
+      <p class="section-label">Direct Channels</p>
+
+      <a href="mailto:braimohaisha@gmail.com" class="channel-item">
+        <div class="channel-icon channel-icon--yellow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="4" width="20" height="16" rx="2"/>
+            <path d="M2 7l10 7 10-7"/>
+          </svg>
+        </div>
+        <div class="channel-info">
+          <p class="channel-type">Email</p>
+          <p class="channel-value">braimohaisha@gmail.com</p>
+        </div>
+        <span class="channel-arrow">→</span>
+      </a>
+
+      <a href="tel:+447565490077" class="channel-item">
+        <div class="channel-icon channel-icon--blue">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 01.22 1.2 2 2 0 012.22 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92v2z"/>
+          </svg>
+        </div>
+        <div class="channel-info">
+          <p class="channel-type">Mobile</p>
+          <p class="channel-value">+44 7565 490077</p>
+        </div>
+        <span class="channel-arrow">→</span>
+      </a>
+
+      <a href="https://www.linkedin.com/in/aishabraimoh" target="_blank" class="channel-item">
+        <div class="channel-icon channel-icon--green">
+          <svg viewBox="0 0 24 24" fill="#1a1a1a">
+            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+          </svg>
+        </div>
+        <div class="channel-info">
+          <p class="channel-type">LinkedIn</p>
+          <p class="channel-value">Aisha Braimoh</p>
+        </div>
+        <span class="channel-arrow">→</span>
+      </a>
+    </div>
+
+    <!-- MESSAGE FORM -->
+    <div class="message-side reveal">
+      <div id="form-wrap">
+        <h2>Send a message</h2>
+        <p>Fill in the form and I'll get back to you as soon as I can.</p>
+        <div class="form-group">
+          <div class="form-row">
+            <div class="field">
+              <label for="fname">First Name</label>
+              <input type="text" id="fname" placeholder="Your name" />
+            </div>
+            <div class="field">
+              <label for="lname">Last Name</label>
+              <input type="text" id="lname" placeholder="Your surname" />
+            </div>
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="you@example.com" />
+          </div>
+          <div class="field">
+            <label for="subject">Subject</label>
+            <select id="subject">
+              <option value="">Select a topic…</option>
+              <option>Job Opportunity</option>
+              <option>Freelance Project</option>
+              <option>Collaboration</option>
+              <option>Just Saying Hi</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="message">Message</label>
+            <textarea id="message" placeholder="Tell me a bit about what you have in mind…"></textarea>
+          </div>
+          <button class="submit-btn" onclick="handleSubmit()">Send Message →</button>
+        </div>
+      </div>
+
+      <div class="form-success" id="form-success">
+        <div class="icon">✉️</div>
+        <h3>Message sent!</h3>
+        <p>Thanks for reaching out. I'll be in touch soon.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- AVAILABILITY BANNER -->
+  <div class="availability reveal">
+    <div class="dot"></div>
+    <p><strong>Currently available</strong> for new opportunities and freelance projects.</p>
+  </div>
+
+  <footer>&copy; 2025 Aisha Braimoh · Product Designer</footer>
+
+  <script>
+    function handleSubmit() {
+      const fname = document.getElementById('fname').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const message = document.getElementById('message').value.trim();
+
+      if (!fname || !email || !message) {
+        alert('Please fill in your name, email, and message before sending.');
+        return;
+      }
+
+      document.getElementById('form-wrap').style.display = 'none';
+      document.getElementById('form-success').style.display = 'block';
+    }
+
+    // ── SCROLL REVEAL ──
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    // ── PAGE TRANSITIONS ──
+    document.querySelectorAll('a[href]').forEach(link => {
+      const href = link.getAttribute('href');
+      if (
+        link.target === '_blank' ||
+        href.startsWith('mailto:') ||
+        href.startsWith('tel:') ||
+        href.startsWith('#') ||
+        href.startsWith('http')
+      ) return;
+
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        document.body.classList.add('fade-out');
+        setTimeout(() => { window.location.href = href; }, 300);
+      });
+    });
+  </script>
+
+</body>
+</html>
